@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { createStore } from 'redux'
-import App from './App'
+import App from './components/App'
 import { Provider } from 'react-redux'
 
-const initialState = { appName: 'abworld', articles: null, checked: false }
+const initialState = { appName: `AB's World`, articles: null, checked: false }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
