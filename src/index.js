@@ -1,14 +1,28 @@
-import ReactDOM from 'react-dom';
-import React from 'react';
+import ReactDOM from 'react-dom'
+import React from 'react'
+import { createStore } from 'redux'
+import App from './App'
+import { Provider } from 'react-redux'
 
-class App extends React.Component {
-  render() {
-    return (
-      <h1>Hello, World!</h1>
-    );
+const initialState = { appName: 'abworld', articles: null, checked: false }
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'TOGGLE':
+      return { ...state, checked: !state.checked }
   }
+  return state
 }
 
-ReactDOM.render((
-  <App />
-), document.getElementById('root'));
+const store = createStore(reducer)
+
+store.subscribe(() => {
+  console.log(store.getState())
+})
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
